@@ -92,3 +92,90 @@ secondElement :: [a] -> a
 secondElement (x:y:_) = y
 --duplicatedHead :: [a] => [a] -> [a]
 --duplicatedHead [a]
+
+
+---- From LAMBDA CONF 2015
+
+x :: Int
+x = 3
+
+y :: Int
+y = y+1
+biggestInt, smallestInt :: Int
+biggestInt = maxBound
+smallestInt = minBound
+n :: Integer
+n = 123457 
+
+reallyBig :: Integer
+reallyBig = 2^(2^(2^(2^2)))
+
+numDigits :: Int
+numDigits = length(show reallyBig)
+
+sumtorial :: Integer -> Integer
+sumtorial 0 = 0
+sumtorial n = n + sumtorial (n-1)
+
+hailstone :: Integer -> Integer
+hailstone n 
+  | n `mod` 2 == 0 = n `div` 2
+  | otherwise      = 3 * n + 1
+
+hailstoneSeq :: Integer -> [Integer]
+hailstoneSeq 1 = [1]
+hailstoneSeq n = n : hailstoneSeq(hailstone n)
+
+
+hailstoneLeng :: Integer -> Integer
+hailstoneLeng n = initListLength (hailstoneSeq n) - 1
+
+foo :: Integer  -> Integer
+foo 0 = 16
+foo 1
+  | "Haskell" > "c++" = 3
+  | otherwise         = 4
+foo n
+  | n < 0             = 0
+  | n `mod` 17 == 2   = -43
+  |otherwise          = n + 3
+
+isEven :: Integer -> Bool
+isEven n
+  | n `mod` 2 == 0 = True
+  |otherwise       = False
+
+f :: Int -> Int -> Int -> Int
+f x y z = x + y + z
+
+
+--List Work --
+nums, range, range2 :: [Integer]
+nums = [1..100]
+range = [1,2,3,4]
+range2 = [2,3..1000000000]
+
+initListLength :: [Integer] -> Integer
+initListLength []     = 0
+initListLength (x:xs) = 1 + initListLength xs
+
+
+sumEveryTwo :: [Integer] -> [Integer]
+sumEveryTwo []         = []
+sumEveryTwo (x : [])   = [x]
+sumEveryTwo (x:(y:zs)) = (x+y) : sumEveryTwo zs
+
+
+toDigits :: Integer -> [Integer]
+toDigits x
+  | x == 0 = [0]
+  | x  < 0 = []
+  | x < 10 = [x]
+  | otherwise = toDigits (x `div` 10) ++ toDigits(x `mod` 10)
+
+toDigitsRev :: Integer -> [Integer]
+toDigitsRev x 
+  |  x == 0   = [0]
+  |  x < 0    = []
+  |  x < 10    = [x]
+  | otherwise = toDigitsRev (x `rem` 10) ++ toDigitsRev ( x `div` 10)
